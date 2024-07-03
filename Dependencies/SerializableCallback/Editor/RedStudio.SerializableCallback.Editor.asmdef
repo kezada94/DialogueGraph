@@ -1,8 +1,12 @@
 {
-    "name": "Siccity.SerializableCallback",
+    "name": "RedStudio.SerializableCallback.Editor",
     "rootNamespace": "",
-    "references": [],
-    "includePlatforms": [],
+    "references": [
+        "RedStudio.SerializableCallback"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
