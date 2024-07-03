@@ -1,5 +1,6 @@
 {
     "name": "Siccity.SerializableCallback.Editor",
+    "rootNamespace": "",
     "references": [
         "GUID:11a2306c728a4b843a652ec6c2f142bc"
     ],

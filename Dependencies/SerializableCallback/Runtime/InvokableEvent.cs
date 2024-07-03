@@ -1,111 +1,135 @@
 ﻿using System;
 
-public class InvokableEvent : InvokableEventBase {
+namespace SerializableCallback
+{
+	public class InvokableEvent : InvokableEventBase<Action>
+	{
+		public InvokableEvent(object target, string methodName) : base(target, methodName)
+		{
+		}
 
-	public System.Action action;
+		public InvokableEvent(Type targetType, string methodName) : base(targetType, methodName)
+		{
+		}
 
-	public void Invoke() {
-		action();
-	}
+		public override void Invoke(params object[] args)
+		{
+			_action();
+		}
+        
+		public void Invoke()
+		{
+			_action();
+		}
 
-	public override void Invoke(params object[] args) {
-		action();
-	}
-
-	/// <summary> Constructor </summary>
-	public InvokableEvent(object target, string methodName) {
-		if (target == null || string.IsNullOrEmpty(methodName)) {
-			action = () => { };
-		} else {
-			action = (System.Action) System.Delegate.CreateDelegate(typeof(System.Action), target, methodName);
+		protected override Action GetDefaultFunction()
+		{
+			return () => { };
 		}
 	}
-}
 
-public class InvokableEvent<T0> : InvokableEventBase {
+	public class InvokableEvent<T0> : InvokableEventBase<Action<T0>>
+	{
+		public InvokableEvent(object target, string methodName) : base(target, methodName)
+		{
+		}
 
-	public Action<T0> action;
+		public InvokableEvent(Type targetType, string methodName) : base(targetType, methodName)
+		{
+		}
 
-	public void Invoke(T0 arg0) {
-		action(arg0);
-	}
+		public override void Invoke(params object[] args)
+		{
+			_action((T0) args[0]);
+		}
+        
+		public void Invoke(T0 x)
+		{
+			_action(x);
+		}
 
-	public override void Invoke(params object[] args) {
-		action((T0) args[0]);
-	}
-
-	/// <summary> Constructor </summary>
-	public InvokableEvent(object target, string methodName) {
-		if (target == null || string.IsNullOrEmpty(methodName)) {
-			action = x => { };
-		} else {
-			action = (System.Action<T0>) System.Delegate.CreateDelegate(typeof(System.Action<T0>), target, methodName);
+		protected override Action<T0> GetDefaultFunction()
+		{
+			return x => { };
 		}
 	}
-}
 
-public class InvokableEvent<T0, T1> : InvokableEventBase {
+	public class InvokableEvent<T0, T1> : InvokableEventBase<Action<T0, T1>>
+	{
+		public InvokableEvent(object target, string methodName) : base(target, methodName)
+		{
+		}
 
-	public Action<T0, T1> action;
+		public InvokableEvent(Type targetType, string methodName) : base(targetType, methodName)
+		{
+		}
 
-	public void Invoke(T0 arg0, T1 arg1) {
-		action(arg0, arg1);
+		public override void Invoke(params object[] args)
+		{
+			_action((T0) args[0], (T1) args[1]);
+		}
+        
+		public void Invoke(T0 x, T1 y)
+		{
+			_action(x, y);
+		}
+
+		protected override Action<T0, T1> GetDefaultFunction()
+		{
+			return (x, y) => { };
+		}
+
 	}
 
-	public override void Invoke(params object[] args) {
-		action((T0) args[0], (T1) args[1]);
-	}
+	public class InvokableEvent<T0, T1, T2> : InvokableEventBase<Action<T0, T1, T2>>
+	{
+		public InvokableEvent(object target, string methodName) : base(target, methodName)
+		{
+		}
 
-	/// <summary> Constructor </summary>
-	public InvokableEvent(object target, string methodName) {
-		if (target == null || string.IsNullOrEmpty(methodName)) {
-			action = (x, y) => { };
-		} else {
-			action = (System.Action<T0, T1>) System.Delegate.CreateDelegate(typeof(System.Action<T0, T1>), target, methodName);
+		public InvokableEvent(Type targetType, string methodName) : base(targetType, methodName)
+		{
+		}
+
+		public override void Invoke(params object[] args)
+		{
+			_action((T0) args[0], (T1) args[1], (T2) args[2]);
+		}
+        
+		public void Invoke(T0 x, T1 y, T2 z)
+		{
+			_action(x, y, z);
+		}
+
+		protected override Action<T0, T1, T2> GetDefaultFunction()
+		{
+			return (x, y, z) => { };
 		}
 	}
-}
 
-public class InvokableEvent<T0, T1, T2> : InvokableEventBase {
-
-	public Action<T0, T1, T2> action;
-
-	public void Invoke(T0 arg0, T1 arg1, T2 arg2) {
-		action(arg0, arg1, arg2);
-	}
-
-	public override void Invoke(params object[] args) {
-		action((T0) args[0], (T1) args[1], (T2) args[2]);
-	}
-
-	/// <summary> Constructor </summary>
-	public InvokableEvent(object target, string methodName) {
-		if (target == null || string.IsNullOrEmpty(methodName)) {
-			action = (x, y, z) => { };
-		} else {
-			action = (System.Action<T0, T1, T2>) System.Delegate.CreateDelegate(typeof(System.Action<T0, T1, T2>), target, methodName);
+	public class InvokableEvent<T0, T1, T2, T3> : InvokableEventBase<Action<T0, T1, T2, T3>>
+	{
+		public InvokableEvent(object target, string methodName) : base(target, methodName)
+		{
 		}
-	}
-}
 
-public class InvokableEvent<T0, T1, T2, T3> : InvokableEventBase {
+		public InvokableEvent(Type targetType, string methodName) : base(targetType, methodName)
+		{
+		}
 
-	public Action<T0, T1, T2, T3> action;
+		public override void Invoke(params object[] args)
+		{
+			_action((T0) args[0], (T1) args[1], (T2) args[2], (T3) args[3]);;
+		}
+        
+		public void Invoke(T0 x, T1 y, T2 z, T3 w)
+		{
+			_action(x, y, z ,w);
+		}
 
-	public void Invoke(T0 arg0, T1 arg1, T2 arg2, T3 arg3) {
-		action(arg0, arg1, arg2, arg3);
-	}
-
-	public override void Invoke(params object[] args) {
-		action((T0) args[0], (T1) args[1], (T2) args[2], (T3) args[3]);
-	}
-
-	/// <summary> Constructor </summary>
-	public InvokableEvent(object target, string methodName) {
-		if (target == null || string.IsNullOrEmpty(methodName)) {
-			action = (x, y, z, w) => { };
-		} else {
-			action = (System.Action<T0, T1, T2, T3>) System.Delegate.CreateDelegate(typeof(System.Action<T0, T1, T2, T3>), target, methodName);
+		protected override Action<T0, T1, T2, T3> GetDefaultFunction()
+		{
+			return (x, y, z, w) => { };
 		}
 	}
 }

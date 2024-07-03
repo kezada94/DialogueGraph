@@ -1,5 +1,6 @@
 {
     "name": "Siccity.SerializableCallback",
+    "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
